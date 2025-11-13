@@ -1,0 +1,44 @@
+Script Code (wanderlust-backup.sh)
+On the VM, create the script:
+sudo nano /usr/local/bin/wanderlust-backup.sh
+
+Paste this:
+#!/bin/bash
+# Simple backup script for WanderLust website
+
+WEBROOT="/var/www/html"                         # Website folder
+BACKUPDIR="/var/backups/wanderlust"             # Folder to store backups
+LOGFILE="/var/log/wanderlust-backup.log"        # Log file to record backups
+
+# Create backup folder if it doesn't exist
+mkdir -p "$BACKUPDIR"
+
+# Create a timestamp for the backup file
+TIME=$(date +"%Y-%m-%d_%H-%M-%S")
+
+# Create a compressed backup of the website
+tar -czf "$BACKUPDIR/wanderlust_$TIME.tar.gz" "$WEBROOT"
+
+# Log the backup action
+echo "$(date) - Backup created: wanderlust_$TIME.tar.gz" >> "$LOGFILE"
+Save and exit.
+Make it executable and create the backup directory (first time):
+sudo chmod +x /usr/local/bin/wanderlust-backup.sh
+sudo mkdir -p /var/backups/wanderlust
+
+10.3 Running and Verifying the Script
+Run the script:
+sudo /usr/local/bin/wanderlust-backup.sh
+
+Check that a backup was created:
+ls -lh /var/backups/wanderlust
+You should see files like:
+wanderlust_2025-11-14_02-30-22.tar.gz
+
+Check the log file:
+cat /var/log/wanderlust-backup.log
+You should see lines like:
+Fri Nov 14 02:30:22 UTC 2025 - Backup created: wanderlust_2025-11-14_02-30-22.tar.gz
+(Screenshot: ls /var/backups/wanderlust and cat /var/log/wanderlust-backup.log)
+
+This will automatically create daily backups of your website.
