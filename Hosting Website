@@ -1,0 +1,17 @@
+🔐 4. Grant File Permissions
+Before uploading website files, run:
+sudo chown -R Madhura:www-data /var/www/html
+sudo chmod -R 775 /var/www/html
+This allows the VM user to manage files in the web directory.
+
+
+
+📤 5. Upload WanderLUst Website From Mac → VM (SCP)
+Exit from VM:
+exit
+Navigate to your site folder on Mac:
+cd ~/Downloads/WanderLUst
+Upload files:
+scp -r * Madhura@20.197.0.49:/var/www/html/
+
+Now Website is being hosted and should be visible on searching IP Address.
