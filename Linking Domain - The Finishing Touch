@@ -1,0 +1,34 @@
+🧹 6. Remove Apache Default & Set Your Website
+SSH into the VM again:
+ssh Madhura@20.197.0.49
+Go to web root:
+cd /var/www/html
+Delete default page:
+sudo rm index.html
+Set your homepage:
+sudo mv Wanderlust.html index.html
+
+
+🌍 7. Test Website Using Public IP
+Visit:
+http://20.197.0.49
+ WanderLust homepage should appear.
+
+🔗 8. Connect Custom Domain (DNS Setup)
+Go to your domain provider’s DNS Management.
+Add the following records:
+A Record
+Type	Host	Value
+A	@	20.197.0.49
+CNAME Record
+Type	Host	Value
+CNAME	www	yourdomain.com
+DNS propagation time: 5–60 minutes
+
+🧪 9. Test Website With Domain
+Once DNS updates, test:
+http://yourdomain.com
+http://www.yourdomain.com
+
+WanderLust website loads perfectly
+All styles, images, and pages work!!!!
