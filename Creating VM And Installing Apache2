@@ -1,0 +1,41 @@
+Starting With Login Into Microsoft Azure
+
+⚙️ 1. Azure VM Setup (Ubuntu 22.04)
+🔹 Login
+Go to:
+https://portal.azure.com
+Select Azure for Students subscription.
+
+🔹 Create VM
+Search Virtual Machines
+Click Create
+Configuration:
+Region: Central India
+Image: Ubuntu Server 22.04 LTS
+Size: B1s
+Username: Madhura
+Authentication: Password
+
+🔹 Networking
+Make sure these ports are allowed:
+Port 22 → SSH
+Port 80 → HTTP
+
+Then Open Terminal
+🔑 2. Connect to the VM (SSH)
+On Mac Terminal:
+ssh Madhura@20.197.0.49
+
+
+🏗️ 3. Install Apache on the VM
+Inside the VM:
+sudo apt update
+sudo apt install apache2 -y
+
+Start + enable:
+sudo systemctl enable apache2
+sudo systemctl start apache2
+
+Test in browser:
+http://20.197.0.49
+You should see the Apache2 landing page.
