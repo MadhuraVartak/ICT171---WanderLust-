@@ -8,13 +8,32 @@ sudo rm index.html
 Set your homepage:
 sudo mv Wanderlust.html index.html
 
+7. Install Certbot and Enable SSL (HTTPS)
+7.1 Install Certbot for Apache
+On the VM:
+sudo apt update
+sudo apt install certbot python3-certbot-apache -y
+Ensure SSL module is enabled:
+sudo a2enmod ssl
+sudo systemctl restart apache2
+ 
+7.2 Request Let’s Encrypt certificates
+Run: 
+sudo certbot --apache -d wander-lust.digital -d www.wander-lust.digital
+•	Enter your email
+•	Agree to the terms
+•	When asked about redirects, choose the option to redirect HTTP to HTTPS
+ 
+You should see:
+“Congratulations! You have successfully enabled HTTPS on https://wander-lust.digital and https://www.wander-lust.digital”
 
-🌍 7. Test Website Using Public IP
+
+🌍 8. Test Website Using Public IP
 Visit:
 http://20.197.0.49
  WanderLust homepage should appear.
 
-🔗 8. Connect Custom Domain (DNS Setup)
+🔗 9. Connect Custom Domain (DNS Setup)
 Go to your domain provider’s DNS Management.
 Add the following records:
 A Record
@@ -25,7 +44,7 @@ Type	Host	Value
 CNAME	www	yourdomain.com
 DNS propagation time: 5–60 minutes
 
-🧪 9. Test Website With Domain
+🧪 10. Test Website With Domain
 Once DNS updates, test:
 http://yourdomain.com
 http://www.yourdomain.com
